@@ -1,23 +1,27 @@
 import logo from './logo.svg';
 import './App.css';
+import { useInView } from 'framer-motion';
+import { useRef } from 'react';
 
 function App() {
+  const yellow = useRef(null)
+  const red = useRef(null)
+  const black = useRef(null)
+  const YellowDivinView = useInView(yellow)
+  const RedDivinView = useInView(red)
+  const BlackDivinView = useInView(black)
+
+  console.log("YellowDivinView", YellowDivinView)
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div ref={black} style={{height:"800px", backgroundColor:BlackDivinView?"black":"gray", 
+      transition:"5s background"}}></div>
+      <div ref={yellow} 
+      style={{height:"800px", backgroundColor:YellowDivinView?"green":"yellow", 
+      transition:"5s background"
+      }}></div>
+      <div ref={red} style={{height:"800px", backgroundColor:RedDivinView?"red":"orange", 
+      transition:"5s background"}}></div>
     </div>
   );
 }
